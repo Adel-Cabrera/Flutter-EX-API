@@ -1,6 +1,8 @@
 # Make HTTP Request in Flutter
 > Add to dependencies =>   http: ^0.12.0+4
+>
 > Install it => flutter pub get
+>
 > Import it => import 'package:http/http.dart' as http;
 >> To handle http request
 >
@@ -15,36 +17,44 @@
 
 ## Create a Future with Async | Await
 
-` class _HomePageState extends State<HomePage> {
+```
+class _HomePageState extends State<HomePage> {
     Future getData() async {
     http.Response response =  await http.get("myURLendpoint");
     debugPrint(response.body);
-} `
+}
+```
 
 ## Update state
 
-` @override
+```
+ @override
 void initState() {
     super.initState();
     getData(); // => Calling the function
-} `
+}
+```
 
 ## Map the JSON file -> then store the values in a List
-` Map data;
-  List userData; `
+```
+Map data;
+List userData;
+```
 
 ## Usage of variables and dart:convert inside Future getData()
 
-` data = json.decode(response.body);
+```
+data = json.decode(response.body);
 setState(() {
     userData = data["data"];
-}); `
-
+});
 debugPrint(userData.toString()); `
+```
 
 ## Finished! No you can use the data in a listview.builder and that's it!
 
-`       body: ListView.builder(
+```
+    body: ListView.builder(
         itemCount: userData == null ? 0 : userData.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
@@ -77,4 +87,4 @@ debugPrint(userData.toString()); `
           );
         },
       ),
-`
+```
